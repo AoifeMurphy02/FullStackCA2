@@ -3,9 +3,9 @@ require(`dotenv`).config({path:`./config/.env`})
 
 
 // Database
+
+
 require(`./config/db`)
-
-
 // Express
 const express = require(`express`)
 const app = express()
@@ -15,8 +15,8 @@ app.use(require(`cors`)({credentials: true, origin: process.env.LOCAL_HOST}))
 
 
 // Routers
-app.use(require(`./routes/cars`))
-
+app.use(require(`./routes/tshirts`))
+//app.use(require(`./routes/users`))
 
 // Port
 app.listen(process.env.SERVER_PORT, () => 

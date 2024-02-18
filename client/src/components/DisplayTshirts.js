@@ -1,32 +1,32 @@
 import React, {Component} from "react"
-import {Link} from "react-router-dom"
 
 import axios from "axios"
 
-import CarTable from "./CarTable"
+
+import Table from "./TshirtTable"
 
 import {SERVER_HOST} from "../config/global_constants"
 
-
-export default class DisplayAllCars extends Component 
+export default class DisplayTshirts extends Component 
 {
     constructor(props) 
     {
         super(props)
         
         this.state = {
-            cars:[]
+            tshirts:[]
         }
     }
     
     
     componentDidMount() 
     {
-        axios.get(`${SERVER_HOST}/cars`)
+        axios.get(`${SERVER_HOST}/tshirts`)
         .then(res => 
         {
             if(res.data)
             {
+                
                 if (res.data.errorMessage)
                 {
                     console.log(res.data.errorMessage)    
@@ -34,7 +34,7 @@ export default class DisplayAllCars extends Component
                 else
                 {           
                     console.log("Records read")   
-                    this.setState({cars: res.data}) 
+                    this.setState({tshirts: res.data}) 
                 }   
             }
             else
@@ -48,15 +48,13 @@ export default class DisplayAllCars extends Component
     render() 
     {   
         return (           
-            <div className="form-container">
-                <div className="table-container">
-                    <CarTable cars={this.state.cars} /> 
-
-                    <div className="add-new-car">
-                        <Link className="blue-button" to={"/AddCar"}>Add New Car</Link>
-                    </div>
+            
+                    <div className="table-container">
+                    <Table tshirts={this.state.tshirts} /> 
+                    
+                    
                 </div>
-            </div> 
+            
         )
     }
 }
